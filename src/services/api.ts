@@ -10,6 +10,6 @@ export const api = axios.create({
     ts: '1665000255',
     apikey: 'a9e55eb2ade905057bfef0a711b8ff0b',
     hash: 'b567cf163765d10aee1cc37b1e90ee2b',
-    offset: 50,
+    offset: 10,
   },
 })

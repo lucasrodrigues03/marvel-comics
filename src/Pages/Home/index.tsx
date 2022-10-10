@@ -1,15 +1,19 @@
 import { useEffect, useState } from 'react'
+import { Modal } from '../../components/Modal'
+// import { Modal } from '../../components/Modal'
 import { api } from '../../services/api'
+import { Comic } from '../../types/comic'
 import { HomeContainer } from './styles'
-
-interface Comic {
-  id: string
-  title: string
-  thumbnail: string
-}
 
 export function Home() {
   const [comics, setComics] = useState<Comic[]>([])
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedItem, setSelectedItem] = useState<Comic>({
+    id: '',
+    title: '',
+    thumbnail: '',
+    description: '',
+  })
 
   const [paginationData, setPaginationData] = useState({
     offset: 1,
@@ -23,6 +27,7 @@ export function Home() {
 
   function handleGetComics(page: number = 1) {
     api.get(`/comics`, { params: { offset: page } }).then((response) => {
+      console.log(response.data)
       const results = response.data.data.results.map(
         (result: Record<string, any>) => {
           return {
@@ -55,35 +60,54 @@ export function Home() {
     setCurrentPage((prevState) => prevState - 1)
   }
 
+  function handleOpenNewModal() {
+    setIsModalOpen(true)
+  }
+
+  function handleCloseModal() {
+    setIsModalOpen(false)
+  }
+
   useEffect(() => {
     handleGetComics()
   }, [])
 
+  useEffect(() => {
+    console.log(selectedItem)
+  }, [selectedItem])
+
   return (
     <HomeContainer>
+      {isModalOpen && (
+        <Modal comic={selectedItem} onClickOverlay={handleCloseModal} />
+      )}
       {comics.map((comic) => {
         return (
           <>
-            <ul>
-              <li key={comic.id}>
-                {comic.title}{' '}
-                <img
-                  className="img-comics"
-                  src={comic.thumbnail}
-                  alt="image-comic"
-                />
-              </li>
-            </ul>
+            <button
+              onClick={() => {
+                setSelectedItem(comic)
+                handleOpenNewModal()
+              }}
+              className="imagens"
+              key={comic.id}
+            >
+              <img className="img-comics" src={comic.thumbnail} alt="" />
+              {/* {comic.title} <p>{comic.description}</p> */}
+            </button>
           </>
         )
       })}
-      <button onClick={previousPage} type="button">
-        Voltar
-      </button>
-      {currentPage} de {totalPages}
-      <button onClick={handleNextPage} type="button">
-        Avançar
-      </button>
+      <div className="pagination">
+        <button onClick={previousPage} type="button">
+          Previous
+        </button>
+        <span className="current-page">{currentPage} de </span>
+        <span className="total-page">{totalPages}</span>
+        <button onClick={handleNextPage} type="button">
+          Next
+        </button>
+      </div>
     </HomeContainer>
   )
 }
