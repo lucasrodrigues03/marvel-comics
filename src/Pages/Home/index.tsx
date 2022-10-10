@@ -79,7 +79,7 @@ export function Home() {
   return (
     <HomeContainer>
       {isModalOpen && (
-        <Modal comic={selectedItem} onClickOverlay={handleCloseModal} />
+        <Modal comic={selectedItem} onClickClose={handleCloseModal} />
       )}
       {comics.map((comic) => {
         return (

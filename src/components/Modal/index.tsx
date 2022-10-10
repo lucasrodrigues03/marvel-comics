@@ -1,3 +1,4 @@
+import { X } from 'phosphor-react'
 import React from 'react'
 import { Comic } from '../../types/comic'
 
@@ -5,13 +6,16 @@ import { ModalContainer, OverlayContent } from './styles'
 
 interface ModalProps {
   comic: Comic
-  onClickOverlay: () => void
+  onClickClose: () => void
 }
 
-export function Modal({ onClickOverlay, comic }: ModalProps) {
+export function Modal({ onClickClose, comic }: ModalProps) {
   return (
-    <ModalContainer onClick={onClickOverlay}>
-      <OverlayContent onClick={(event) => event.stopPropagation()}>
+    <ModalContainer>
+      <OverlayContent>
+        <button>
+          <X size={32} onClick={onClickClose} />
+        </button>
         <img src={comic.thumbnail} alt="" />
         <p>{comic.description}</p>
       </OverlayContent>
