@@ -1,65 +1,49 @@
 import styled from 'styled-components'
 
 export const HomeContainer = styled.div`
-  margin: 100px auto;
+  margin-top: 50px;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  overflow-x: hidden;
-  gap: 1rem;
-  justify-content: space-around;
+  overflow-y: hidden;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
 
   img {
-    display: inline-block;
+    object-fit: cover;
     cursor: pointer;
-    width: 150px;
-
-    transition: all 0.2s;
-  }
-
-  .card {
-    padding: 8px;
-    background: white;
+    width: 100%;
+    height: 100%;
     border-radius: 8px;
+    max-height: 300px;
+  }
+`
+interface CardContainerProps {
+  isSpecial?: boolean
+}
+
+export const CardContainer = styled.div<CardContainerProps>`
+  margin: 8px;
+  width: 200px;
+  height: 300px;
+  padding: ${(props) => (props.isSpecial ? '15px' : ' 5px')};
+  background: ${(props) => (props.isSpecial ? '#ff0000' : ' #fff')};
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  transition: all 0.3s;
+
+  &:hover {
+    transform: scale(1.05);
   }
 
-  .pagination {
-    left: 50%;
-    transform: translate(-50%);
-    position: fixed;
-    bottom: 0;
+  @media (max-width: 700px) {
+    width: 100px;
+    height: 150px;
 
-    button {
-      width: 100px;
-      padding: 5px;
-      border: 0;
-      border-radius: 6px;
-      color: white;
-      background: #f80618;
-      cursor: pointer;
-      font-weight: bold;
-
-      transition: all 0.2s;
-
-      &:hover {
-        filter: brightness(0.8);
-      }
-
-      &:active {
-        filter: brightness(0.6);
-      }
-    }
-
-    .current-page {
-      margin-left: 5px;
-      gap: 1rem;
-      font-size: 20px;
-    }
-
-    .total-page {
-      gap: 1rem;
-      margin-right: 5px;
-      font-size: 20px;
+    img {
+      width: 100%;
+      height: 100%;
     }
   }
 `
