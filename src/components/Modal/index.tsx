@@ -1,8 +1,14 @@
-import { X } from 'phosphor-react'
-import React from 'react'
+import { useDispatch } from 'react-redux'
+import { actionAddProductToCart } from '../../store/reducers/cart'
 import { Comic } from '../../types/comic'
 
-import { ModalContainer, OverlayContent } from './styles'
+import { Plus, X } from 'phosphor-react'
+import {
+  AddCartButton,
+  CloseButtonContainer,
+  ModalContainer,
+  OverlayContent,
+} from './styles'
 
 interface ModalProps {
   comic: Comic
@@ -10,14 +16,27 @@ interface ModalProps {
 }
 
 export function Modal({ onClickClose, comic }: ModalProps) {
+  const dispatch = useDispatch()
+
+  function handleClickBuy() {
+    dispatch(actionAddProductToCart(comic))
+    onClickClose()
+  }
+
   return (
     <ModalContainer>
       <OverlayContent>
-        <button>
-          <X size={32} onClick={onClickClose} />
-        </button>
-        <img src={comic.thumbnail} alt="" />
-        <p>{comic.description}</p>
+        <CloseButtonContainer>
+          <X size={25} onClick={onClickClose} />
+        </CloseButtonContainer>
+        <div>
+          <img src={comic.thumbnail} alt="" />
+          <p>{comic.description}</p>
+        </div>
+        <AddCartButton onClick={handleClickBuy}>
+          Adicionar ao carrinho
+          <Plus size={24} />
+        </AddCartButton>
       </OverlayContent>
     </ModalContainer>
   )
