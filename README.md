@@ -36,7 +36,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - React.JS
 - TypeScript
-- React hook-form
 - styled-components
 - Axios
 - Redux-toolkit
