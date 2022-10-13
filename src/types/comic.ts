@@ -3,4 +3,5 @@ export interface Comic {
   title: string
   thumbnail: string
   description: string
+  isSpecial?: boolean
 }

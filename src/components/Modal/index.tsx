@@ -26,13 +26,11 @@ export function Modal({ onClickClose, comic }: ModalProps) {
   return (
     <ModalContainer>
       <OverlayContent>
+        <p>{comic.title}</p>
         <CloseButtonContainer>
-          <X size={25} onClick={onClickClose} />
+          <X size={30} onClick={onClickClose} />
         </CloseButtonContainer>
-        <div>
-          <img src={comic.thumbnail} alt="" />
-          <p>{comic.description}</p>
-        </div>
+        <img src={comic.thumbnail} alt="" />
         <AddCartButton onClick={handleClickBuy}>
           Adicionar ao carrinho
           <Plus size={24} />
