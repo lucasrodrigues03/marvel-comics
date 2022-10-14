@@ -11,37 +11,40 @@ export const ModalContainer = styled.div`
 `
 export const OverlayContent = styled.div`
   position: fixed;
+  width: 450px;
+  height: 500px;
+  padding: 50px;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 450px;
-  height: 500px;
   max-width: 90%;
   background-color: #fff;
+  box-shadow: 1px 20px 50px #000;
   text-align: center;
 
   border-radius: 0.5rem;
   z-index: 10;
 
   p {
-    margin-top: 50px;
     font-weight: bold;
   }
 
   img {
-    width: 390px;
+    width: 300px;
     height: 500px;
     margin: 30px auto;
+    box-shadow: 1px 20px 70px;
   }
 
   @media (max-width: 700px) {
-    width: 400px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     height: 400px;
 
     img {
+      margin-top: -25px;
       width: 200px;
-      height: 100;
-      margin: 25px auto;
     }
 
     p {
@@ -77,10 +80,9 @@ export const AddCartButton = styled.button`
   color: #fff;
   font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s;
 
   &:hover {
-    filter: brightness(0.8);
+    filter: brightness(1);
   }
 
   @media (max-width: 700px) {

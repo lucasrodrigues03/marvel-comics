@@ -19,7 +19,7 @@ export function Cart() {
   return (
     <>
       <ButtonContainer onClick={() => navigate('/')} type="button">
-        <ArrowLeft size={50} />
+        <ArrowLeft size={30} />
       </ButtonContainer>
 
       <CartContainer>

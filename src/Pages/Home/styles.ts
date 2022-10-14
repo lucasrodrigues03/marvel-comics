@@ -28,7 +28,8 @@ export const CardContainer = styled.div<CardContainerProps>`
   width: 200px;
   height: 300px;
   padding: ${(props) => (props.isSpecial ? '15px' : ' 5px')};
-  background: ${(props) => (props.isSpecial ? '#ff0000' : ' #fff')};
+  opacity: ${(props) => (props.isSpecial ? '0.8' : ' 1')};
+  background: ${(props) => (props.isSpecial ? '#ff2' : ' #fff')};
   border-radius: 8px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
   transition: all 0.3s;

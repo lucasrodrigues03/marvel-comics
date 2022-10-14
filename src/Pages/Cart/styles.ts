@@ -107,13 +107,14 @@ export const ProductDetails = styled.div`
 `
 export const ButtonContainer = styled.button`
   position: fixed;
-  top: 0;
+  top: 10px;
   left: 30px;
   padding: 8px;
   margin-bottom: 10px;
-  background: none;
-  color: #000;
+  background: rgba(255, 0, 0, 0.8);
+  color: #fff;
   border: none;
+  border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s;
 
